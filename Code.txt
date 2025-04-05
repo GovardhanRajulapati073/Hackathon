@@ -1,0 +1,48 @@
+import java.util.*;
+interface AIAnalyzer {
+    void analyzeImage(String image);
+    void detectActivity(String activity);
+    void assessQuality(String feedback);
+}
+class ClassEyeAI implements AIAnalyzer {
+    @Override
+    public void analyzeImage(String image) {
+        System.out.println("Analyzing classroom image: " + image);
+        System.out.println("Detected: High engagement with 85% attentiveness.");
+    }
+    @Override
+    public void detectActivity(String activity) {
+        System.out.println("Recognizing activity: " + activity);
+        if (activity.contains("discussion")) {
+            System.out.println("positive interaction detected.");
+        } else {
+            System.out.println("Low engagement. Suggesting intervention.");
+        }
+    }
+    @Override
+    public void assessQuality(String feedback) {
+        System.out.println("Assessing training quality: " + feedback);
+        if (feedback.contains("poor")) {
+            System.out.println("Alert: Instructor needs improvement training.");
+        } else {
+            System.out.println("Quality assessment passed.");
+        }
+    }
+}
+class Main {
+    public static void main(String[] args) throws InterruptedException {
+        ClassEyeAI classEye = new ClassEyeAI();
+        String[] image = {"Classroom1.jpg", "Classroom2.jpg","classroom3.jpg"};
+        String[] activities = {"group discussion", "silent reading", "instructor lecture"};
+        String[] feedbacks = {"excellent teaching", "poor interaction", "engaging session"};
+        Random random = new Random();
+        for (int I = 0; I < 3; I++) {
+            System.out.println("\n--- ClassEye AI Monitoring Cycle " + (I + 1) + "---");
+            classEye.analyzeImage(image[random.nextInt(image.length)]);
+            classEye.detectActivity(activities[random.nextInt(activities.length)]);
+            classEye.assessQuality(feedbacks[random.nextInt(feedbacks.length)]);
+            Thread.sleep(3000);
+        }
+    }
+}
+        
